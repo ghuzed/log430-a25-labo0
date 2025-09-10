@@ -14,6 +14,7 @@ jobs:
 
       - name: Build and deploy with Docker Compose
         run: |
+          git clone https://github.com/ghuzed/log430-a25-labo0.git
           cd log430-a25-labo0
           git pull
           docker build -t labo0-calculator .

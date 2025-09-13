@@ -1,4 +1,4 @@
-name: example_CI
+name: test and deploy
 
 on: [push, pull_request]
 
@@ -22,4 +22,14 @@ jobs:
           pip install pytest
       - name: Éxécuter les tests
         run: pytest src/tests
+  
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy with Docker Compose
+        run: |
+          docker-compose down
+          docker-compose up -d --build
 
